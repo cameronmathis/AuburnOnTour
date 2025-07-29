@@ -39,7 +39,7 @@ jobs:
               with:
                   project_id: ${{ secrets.GOOGLE_CLOUD_PROJECT_ID }}
 
-            - name: Deploy to Cloud Functions (Gen2)
+            - name: Deploy to Cloud Functions
               run: |
                   gcloud functions deploy auburn-on-tour \
                     --runtime=nodejs20 \
