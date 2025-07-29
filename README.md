@@ -1,8 +1,8 @@
-[![license](https://img.shields.io/github/license/cameronmathis/RepoTemplate)](LICENSE)
-[![CodeQL](https://github.com/cameronmathis/RepoTemplate/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cameronmathis/RepoTemplate/actions/workflows/codeql-analysis.yml)
-[![CodeFactor](https://www.codefactor.io/repository/github/cameronmathis/RepoTemplate/badge)](https://www.codefactor.io/repository/github/cameronmathis/RepoTemplate)
+[![license](https://img.shields.io/github/license/cameronmathis/AuburnOnTour)](LICENSE)
+[![CodeQL](https://github.com/cameronmathis/AuburnOnTour/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cameronmathis/AuburnOnTour/actions/workflows/codeql-analysis.yml)
+[![CodeFactor](https://www.codefactor.io/repository/github/cameronmathis/AuburnOnTour/badge)](https://www.codefactor.io/repository/github/cameronmathis/AuburnOnTour)
 
-# Repo Template
+# Auburn On Tour
 
 ## Table of contents
 
@@ -14,7 +14,7 @@
 
 ## General info
 
-This is a template I created to easily spin up new GitHub Repositories.
+This is a personal bot that posts golf results of Auburn alumni who are playing on the PGA Tour.
 
 ## Setup
 
