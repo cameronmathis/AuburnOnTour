@@ -20,8 +20,7 @@
         "forceConsistentCasingInFileNames": true,
         "outDir": "./dist",
         "rootDir": "./src",
-        "sourceMap": true,
-        "declaration": true
+        "sourceMap": true
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules", "dist"]

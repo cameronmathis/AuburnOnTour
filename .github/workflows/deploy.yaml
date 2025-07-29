@@ -10,10 +10,12 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
-            - name: Cache node modules
+            - name: Cache node modules and npm cache
               uses: actions/cache@v3
               with:
-                  path: ~/.npm
+                  path: |
+                      ~/.npm
+                      node_modules
                   key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
                   restore-keys: |
                       ${{ runner.os }}-node-
@@ -45,7 +47,7 @@ jobs:
                     --runtime=nodejs20 \
                     --region=us-central1 \
                     --entry-point=handler \
-                    --source=dist \
+                    --source=. \
                     --trigger-http \
                     --memory=256MB \
                     --set-env-vars="TWITTER_API_KEY=${{ secrets.TWITTER_API_KEY }},TWITTER_API_SECRET=${{ secrets.TWITTER_API_SECRET }},TWITTER_ACCESS_TOKEN=${{ secrets.TWITTER_ACCESS_TOKEN }},TWITTER_ACCESS_SECRET=${{ secrets.TWITTER_ACCESS_SECRET }}"
