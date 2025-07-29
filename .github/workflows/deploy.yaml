@@ -44,6 +44,7 @@ jobs:
             - name: Deploy to Cloud Functions
               run: |
                   gcloud functions deploy auburn-on-tour \
+                    --no-gen2 \
                     --runtime=nodejs20 \
                     --region=us-central1 \
                     --entry-point=handler \
