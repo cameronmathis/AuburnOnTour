@@ -4,8 +4,7 @@
     "main": "dist/index.js",
     "scripts": {
         "build": "tsc",
-        "start": "node dist/index.js",
-        "deploy": "gcloud functions deploy auburn-on-tour --gen2 --runtime=nodejs20 --region=us-central1 --source=. --entry-point=handler --trigger-http"
+        "start": "node dist/index.js"
     },
     "dependencies": {
         "@google-cloud/firestore": "^6.8.0",
