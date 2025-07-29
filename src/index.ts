@@ -16,7 +16,7 @@ import { LocalTranslationService as TranslationService } from './services/Transl
 import { TwitterService } from './services/TwitterService';
 import { logger } from './utils/Logger';
 
-export async function handler(req: any, res: any) {
+export async function handler(_req: any, res: any) {
     try {
         const result = await main();
         res.status(200).send(result);

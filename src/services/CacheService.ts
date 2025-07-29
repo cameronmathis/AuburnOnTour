@@ -14,7 +14,7 @@ export class CacheService implements CacheServiceInterface {
     private readonly tournamentHashCollection;
     private readonly tweetedRoundsCollection;
 
-    constructor(private readonly db: DatabaseService) {
+    constructor(db: DatabaseService) {
         this.tournamentHashCollection = db.collection<TournamentHashData>('cache');
         this.tweetedRoundsCollection = db.collection<TweetedRoundData>('tweetedRounds');
     }
