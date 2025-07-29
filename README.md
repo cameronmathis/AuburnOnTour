@@ -7,7 +7,6 @@
 ## Table of contents
 
 - [General info](#general-info)
-- [Setup](#setup)
 - [Software details](#Software-details)
 - [Status](#status)
 - [Contact](#contact)
@@ -16,17 +15,14 @@
 
 This is a personal bot that posts golf results of Auburn alumni who are playing on the PGA Tour.
 
-## Setup
-
-In order to use this...
 
 ## Software details
 
-Language:
+Language: Typescript
 
 ## Status
 
-Version: </br>
+Version: 1.0.0 </br>
 Project is: _in progress_
 
 ## Contact
