@@ -4,7 +4,7 @@
     "main": "dist/index.js",
     "scripts": {
         "build": "tsc",
-        "postbuild": "mkdir -p dist/data dist/locales && cp -R src/data/. dist/data/ && cp -R src/locales/. dist/locales/ && cp package.json dist/ && cp package-lock.json dist/",
+        "postinstall": "tsc",
         "start": "functions-framework --target=handler"
     },
     "dependencies": {
