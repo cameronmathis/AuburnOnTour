@@ -1,5 +1,5 @@
 [![license](https://img.shields.io/github/license/cameronmathis/AuburnOnTour)](LICENSE)
-[![CodeQL](https://github.com/cameronmathis/AuburnOnTour/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cameronmathis/AuburnOnTour/actions/workflows/codeql-analysis.yml)
+[![CodeQL](https://github.com/cameronmathis/AuburnOnTour/actions/workflows/codeql-analysis.yaml/badge.svg)](https://github.com/cameronmathis/AuburnOnTour/actions/workflows/codeql-analysis.yaml)
 [![CodeFactor](https://www.codefactor.io/repository/github/cameronmathis/AuburnOnTour/badge)](https://www.codefactor.io/repository/github/cameronmathis/AuburnOnTour)
 
 # Auburn On Tour
