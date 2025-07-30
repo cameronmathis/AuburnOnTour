@@ -20,51 +20,61 @@ provider "google" {
 
 # Enable required APIs
 resource "google_project_service" "storage" {
+  project            = var.project_id
   service            = "storage.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "iam" {
+  project            = var.project_id
   service            = "iam.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "cloud_build" {
+  project            = var.project_id
   service            = "cloudbuild.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "cloud_scheduler" {
+  project            = var.project_id
   service            = "cloudscheduler.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "cloud_functions" {
+  project            = var.project_id
   service            = "cloudfunctions.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "firestore" {
+  project            = var.project_id
   service            = "firestore.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "cloud_resource_manager" {
+  project            = var.project_id
   service            = "cloudresourcemanager.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "artifact_registry" {
+  project            = var.project_id
   service            = "artifactregistry.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "logging" {
+  project            = var.project_id
   service            = "logging.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "monitoring" {
+  project            = var.project_id
   service            = "monitoring.googleapis.com"
   disable_on_destroy = false
 }
@@ -110,12 +120,6 @@ resource "google_project_iam_member" "app_storage" {
 }
 
 # IAM roles for the CI/CD service account
-resource "google_storage_bucket_iam_member" "cicd_state_access" {
-  bucket = google_storage_bucket.terraform_state.name
-  role   = "roles/storage.admin"
-  member = "serviceAccount:${google_service_account.ci_cd_service_account.email}"
-}
-
 resource "google_project_iam_member" "cicd_cloud_run" {
   project = var.project_id
   role    = "roles/run.admin"
