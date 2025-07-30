@@ -94,6 +94,12 @@ resource "google_project_iam_member" "cicd_service_accounts" {
   member  = "serviceAccount:${google_service_account.ci_cd_service_account.email}"
 }
 
+resource "google_project_iam_member" "cicd_cloud_functions" {
+  project = var.project_id
+  role    = "roles/cloudfunctions.admin"
+  member  = "serviceAccount:${google_service_account.ci_cd_service_account.email}"
+}
+
 # IAM roles for the scheduler/function service account
 resource "google_project_iam_member" "function_firestore" {
   project = var.project_id
