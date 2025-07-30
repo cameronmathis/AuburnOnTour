@@ -18,5 +18,5 @@ variable "zone" {
 variable "firestore_location" {
   description = "The location for the Firestore database"
   type        = string
-  default     = "nam5"  # North America multi-region
+  default     = "nam5"
 }

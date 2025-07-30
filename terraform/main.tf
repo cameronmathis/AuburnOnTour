@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "gcs" {
-    bucket = "auburn-on-tour-terraform-state"  # Must be globally unique
+    bucket = "auburn-on-tour-terraform-state"
     prefix = "terraform/state"
   }
 }
@@ -151,7 +151,7 @@ resource "google_project_iam_member" "function_invoker" {
 resource "google_cloud_scheduler_job" "auburn_on_tour_job" {
   name        = "auburn-on-tour-job"
   description = "Triggers the auburn on tour function"
-  schedule    = "0 * * * *"  # Runs every hour
+  schedule    = "0 * * * *"
   region      = var.region
 
   http_target {
