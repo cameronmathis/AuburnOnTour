@@ -39,9 +39,9 @@ jobs:
                   runtime: nodejs20
                   region: us-central1
                   entry_point: handler
-                  source: dist
-                  trigger_http: true
-                  memory: 256MB
+                  source_dir: dist
+                  memory_mb: 256
+                  https_trigger_security_level: SECURE_ALWAYS
                   env_vars: |
                       TWITTER_API_KEY=${{ secrets.TWITTER_API_KEY }}
                       TWITTER_API_SECRET=${{ secrets.TWITTER_API_SECRET }}
