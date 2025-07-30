@@ -20,52 +20,52 @@ provider "google" {
 
 # Enable required APIs
 resource "google_project_service" "storage" {
-  service = "storage.googleapis.com"
+  service            = "storage.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "iam" {
-  service = "iam.googleapis.com"
+  service            = "iam.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "cloud_build" {
-  service = "cloudbuild.googleapis.com"
+  service            = "cloudbuild.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "cloud_scheduler" {
-  service = "cloudscheduler.googleapis.com"
+  service            = "cloudscheduler.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "cloud_functions" {
-  service = "cloudfunctions.googleapis.com"
+  service            = "cloudfunctions.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "firestore" {
-  service = "firestore.googleapis.com"
+  service            = "firestore.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "cloud_resource_manager" {
-  service = "cloudresourcemanager.googleapis.com"
+  service            = "cloudresourcemanager.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "artifact_registry" {
-  service = "artifactregistry.googleapis.com"
+  service            = "artifactregistry.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "logging" {
-  service = "logging.googleapis.com"
+  service            = "logging.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "monitoring" {
-  service = "monitoring.googleapis.com"
+  service            = "monitoring.googleapis.com"
   disable_on_destroy = false
 }
 
