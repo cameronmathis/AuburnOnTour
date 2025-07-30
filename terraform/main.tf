@@ -49,6 +49,26 @@ resource "google_project_service" "firestore" {
   disable_on_destroy = false
 }
 
+resource "google_project_service" "cloud_resource_manager" {
+  service = "cloudresourcemanager.googleapis.com"
+  disable_on_destroy = false
+}
+
+resource "google_project_service" "artifact_registry" {
+  service = "artifactregistry.googleapis.com"
+  disable_on_destroy = false
+}
+
+resource "google_project_service" "logging" {
+  service = "logging.googleapis.com"
+  disable_on_destroy = false
+}
+
+resource "google_project_service" "monitoring" {
+  service = "monitoring.googleapis.com"
+  disable_on_destroy = false
+}
+
 # GCS bucket resource
 resource "google_storage_bucket" "terraform_state" {
   name                        = "auburn-on-tour-terraform-state"
