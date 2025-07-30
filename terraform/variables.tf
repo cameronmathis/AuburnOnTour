@@ -20,37 +20,3 @@ variable "firestore_location" {
   type        = string
   default     = "nam5"  # North America multi-region
 }
-
-variable "environment" {
-  description = "The environment (production, development, etc.)"
-  type        = string
-  default     = "production"
-}
-
-variable "container_image" {
-  description = "The container image to deploy to Cloud Run"
-  type        = string
-}
-
-variable "function_source_path" {
-  description = "Path to the zipped source code for the Cloud Function"
-  type        = string
-  default     = "../function/function-source.zip"
-}
-
-variable "alert_email_address" {
-  description = "Email address to receive monitoring alerts"
-  type        = string
-}
-
-variable "vpc_connector_name" {
-  description = "Name of the VPC connector to use"
-  type        = string
-  default     = "auburn-vpc-connector"
-}
-
-variable "vpc_network" {
-  description = "Name of the VPC network"
-  type        = string
-  default     = "auburn-network"
-}
