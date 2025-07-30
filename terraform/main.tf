@@ -110,6 +110,12 @@ resource "google_project_iam_member" "app_storage" {
 }
 
 # IAM roles for the CI/CD service account
+resource "google_storage_bucket_iam_member" "cicd_state_access" {
+  bucket = google_storage_bucket.terraform_state.name
+  role   = "roles/storage.admin"
+  member = "serviceAccount:${google_service_account.ci_cd_service_account.email}"
+}
+
 resource "google_project_iam_member" "cicd_cloud_run" {
   project = var.project_id
   role    = "roles/run.admin"
