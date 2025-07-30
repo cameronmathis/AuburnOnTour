@@ -1,45 +1,49 @@
-name: Deploy to GCP
+name: Deploy Cloud Function
 
 on:
     push:
         branches: [develop]
 
 jobs:
-    build-deploy:
+    deploy:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout repository
-              uses: actions/checkout@v3
+            - name: Checkout code
+              uses: actions/checkout@v4
 
             - name: Set up Node.js
               uses: actions/setup-node@v4
               with:
                   node-version: '20'
 
-            - name: Authenticate with Google Cloud
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Compile TypeScript
+              run: npm run build
+
+            - name: Authenticate to Google Cloud
               uses: google-github-actions/auth@v2
               with:
                   credentials_json: '${{ secrets.GCP_SA_KEY }}'
 
-            - name: Set up gcloud CLI
+            - name: Set up Google Cloud SDK
               uses: google-github-actions/setup-gcloud@v2
               with:
                   project_id: ${{ secrets.GOOGLE_CLOUD_PROJECT_ID }}
 
-            - name: Prepare source folder
-              run: |
-                  mkdir dist
-                  cp -r src/* dist/
-                  cp package.json tsconfig.json package-lock.json dist/
-
-            - name: Deploy function to GCP
-              run: |
-                  gcloud functions deploy auburn-on-tour \
-                    --no-gen2 \
-                    --runtime=nodejs20 \
-                    --region=us-central1 \
-                    --entry-point=handler \
-                    --source=dist \
-                    --trigger-http \
-                    --memory=256MB \
-                    --set-env-vars="TWITTER_API_KEY=${{ secrets.TWITTER_API_KEY }},TWITTER_API_SECRET=${{ secrets.TWITTER_API_SECRET }},TWITTER_ACCESS_TOKEN=${{ secrets.TWITTER_ACCESS_TOKEN }},TWITTER_ACCESS_SECRET=${{ secrets.TWITTER_ACCESS_SECRET }}"
+            - name: Deploy to Cloud Functions
+              uses: google-github-actions/deploy-cloud-functions@v2
+              with:
+                  name: auburn-on-tour
+                  runtime: nodejs20
+                  region: us-central1
+                  entry_point: handler
+                  source: dist
+                  trigger_http: true
+                  memory: 256MB
+                  env_vars: |
+                      TWITTER_API_KEY=${{ secrets.TWITTER_API_KEY }}
+                      TWITTER_API_SECRET=${{ secrets.TWITTER_API_SECRET }}
+                      TWITTER_ACCESS_TOKEN=${{ secrets.TWITTER_ACCESS_TOKEN }}
+                      TWITTER_ACCESS_SECRET=${{ secrets.TWITTER_ACCESS_SECRET }}
