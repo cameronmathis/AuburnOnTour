@@ -5,7 +5,7 @@
     "scripts": {
         "build": "tsc",
         "postbuild": "mkdir -p dist/data dist/locales && cp -R src/data/. dist/data/ && cp -R src/locales/. dist/locales/ && cp package.json dist/ && cp package-lock.json dist/ && cp tsconfig.json dist/",
-        "start": "functions-framework --target=myFunction"
+        "start": "functions-framework --target=handler"
     },
     "dependencies": {
         "@google-cloud/firestore": "^6.8.0",

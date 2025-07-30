@@ -22,6 +22,18 @@ jobs:
             - name: Compile TypeScript
               run: npm run build
 
+            - name: Install production dependencies in dist
+              run: |
+                  cd dist
+                  npm ci --only=production
+
+            - name: Verify build artifacts
+              run: |
+                  echo "Contents of dist directory:"
+                  ls -la dist/
+                  echo "Contents of dist package.json:"
+                  cat dist/package.json
+
             - name: Authenticate to Google Cloud
               uses: google-github-actions/auth@v2
               with:
@@ -41,9 +53,12 @@ jobs:
                   entry_point: handler
                   source_dir: dist
                   memory_mb: 256
+                  timeout: 540
                   https_trigger_security_level: SECURE_ALWAYS
                   env_vars: |
+                      NODE_ENV=production
                       TWITTER_API_KEY=${{ secrets.TWITTER_API_KEY }}
                       TWITTER_API_SECRET=${{ secrets.TWITTER_API_SECRET }}
                       TWITTER_ACCESS_TOKEN=${{ secrets.TWITTER_ACCESS_TOKEN }}
                       TWITTER_ACCESS_SECRET=${{ secrets.TWITTER_ACCESS_SECRET }}
+                      GOOGLE_CLOUD_PROJECT_ID=${{ secrets.GOOGLE_CLOUD_PROJECT_ID }}

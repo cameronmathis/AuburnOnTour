@@ -1,9 +1,12 @@
 import dotenv from 'dotenv';
 import { z } from 'zod';
 
-const result = dotenv.config();
-if (result.error) {
-    throw new Error('Failed to load environment variables');
+// Only load .env in development - Cloud Functions use environment variables directly
+if (process.env.NODE_ENV !== 'production') {
+    const result = dotenv.config();
+    if (result.error) {
+        console.warn('Failed to load .env file (this is expected in production)');
+    }
 }
 
 const nonEmptyString = z.string().min(1, 'Field cannot be empty');
