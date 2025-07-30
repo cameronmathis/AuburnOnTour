@@ -5,9 +5,10 @@ terraform {
       version = "~> 4.0"
     }
   }
-  
-  backend "local" {
-    path = "terraform.tfstate"
+
+  backend "gcs" {
+    bucket = "auburn-on-tour-terraform-state"  # Must be globally unique
+    prefix = "terraform/state"
   }
 }
 
@@ -18,6 +19,11 @@ provider "google" {
 }
 
 # Enable required APIs
+resource "google_project_service" "storage" {
+  service = "storage.googleapis.com"
+  disable_on_destroy = false
+}
+
 resource "google_project_service" "iam" {
   service = "iam.googleapis.com"
   disable_on_destroy = false
@@ -41,6 +47,14 @@ resource "google_project_service" "cloud_functions" {
 resource "google_project_service" "firestore" {
   service = "firestore.googleapis.com"
   disable_on_destroy = false
+}
+
+# GCS bucket resource
+resource "google_storage_bucket" "terraform_state" {
+  name                        = "auburn-on-tour-terraform-state"
+  location                    = var.region
+  uniform_bucket_level_access = true
+  force_destroy               = true
 }
 
 # Service Accounts
@@ -132,10 +146,10 @@ resource "google_cloud_scheduler_job" "auburn_on_tour_job" {
   depends_on = [google_project_service.cloud_scheduler]
 }
 
-# Firestore configuration
+# Firestore database config
 resource "google_firestore_database" "database" {
-  name                        = "(default)"
-  location_id                 = var.firestore_location
-  type                        = "FIRESTORE_NATIVE"
-  depends_on                  = [google_project_service.firestore]
+  name        = "(default)"
+  location_id = var.firestore_location
+  type        = "FIRESTORE_NATIVE"
+  depends_on  = [google_project_service.firestore]
 }
