@@ -1,0 +1,42 @@
+name: Deploy Terraform 
+
+on:
+    push:
+        branches: [develop]
+        paths:
+            - 'terraform/**'
+
+jobs:
+    terraform:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: terraform
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v2
+              with:
+                  terraform_version: '1.12.2'
+
+            - name: Authenticate to Google Cloud
+              uses: google-github-actions/auth@v2
+              with:
+                  credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+            - name: Terraform Format Check
+              run: terraform fmt -check
+
+            - name: Terraform Init
+              run: terraform init
+
+            - name: Terraform Validate
+              run: terraform validate
+
+            - name: Terraform Plan
+              run: terraform plan
+
+            - name: Terraform Apply
+              run: terraform apply -auto-approve
